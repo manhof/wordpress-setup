@@ -1,10 +1,9 @@
 #!/bin/bash
 #Wordpress DB Create
 localdb=$1
-dbserver=$1
 dbrootpw=$2
 database=$3
-
+dbserver=$4
 pass= $(pwgen -s 13 1)
 echo $pass > /home/dbpassword
 echo $database > /home/database
