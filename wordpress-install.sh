@@ -2,9 +2,9 @@
 #Wordpress Install
 
 localdb=$1
-dbserver=$1
 wpdbpwd=$2
 wpdb=$3
+dbserver=$4
 
 gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
 serverbuild=$(cat /home/id.txt)
