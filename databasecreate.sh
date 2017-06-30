@@ -11,7 +11,7 @@ echo " Your DB Password for your Wordpress user is $wppass" >> /home/test
 if [[ "$localdb" = true ]]
  then
  echo "setting up the local db" >> /home/test
- echo "username is wordpress, password is $wppass, database is $database" >> /home/test
+ echo "username is wordpressuser, password is $wppass, database is $database" >> /home/test
  mysql -u root  -p"$dbrootpw" -e "CREATE DATABASE $database DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
  mysql -u root  -p"$dbrootpw" -e "GRANT ALL ON $database.* TO 'wordpressuser'@'localhost' IDENTIFIED BY '$wppass';"
  mysql -u root  -p"$dbrootpw" -e "Flush PRIVILEGES;"
