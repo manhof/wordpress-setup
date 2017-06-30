@@ -37,7 +37,7 @@ curl -s https://api.wordpress.org/secret-key/1.1/salt/ > /home/salt.txt
 
 echo "<?php" > /var/www/html/wp-config.php
 echo "define('DB_NAME', '$wpdb');" >> /var/www/html/wp-config.php
-echo "define('DB_USER', 'wordpress');" >> /var/www/html/wp-config.php
+echo "define('DB_USER', 'wordpressuser');" >> /var/www/html/wp-config.php
 echo "define('DB_PASSWORD', '$wpdbpwd');" >> /var/www/html/wp-config.php
 if [[ $localdb == true ]]
  then
