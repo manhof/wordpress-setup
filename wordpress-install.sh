@@ -34,7 +34,7 @@ chmod g+w /var/www/html/wp-content
 chmod -R g+w /var/www/html/wp-content/themes
 chmod -R g+w /var/www/html/wp-content/plugins
 curl -s https://api.wordpress.org/secret-key/1.1/salt/ > /home/salt.txt
-
+touch /var/www/html/wp-config.php
 echo "<?php" > /var/www/html/wp-config.php
 echo "define('DB_NAME', '$wpdb');" >> /var/www/html/wp-config.php
 echo "define('DB_USER', 'wordpress');" >> /var/www/html/wp-config.php
