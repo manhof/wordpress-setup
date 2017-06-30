@@ -4,9 +4,9 @@ localdb=$1
 dbrootpw=$2
 database=$3
 dbserver=$4
-wppass= $(openssl rand -base64 32)
+openssl rand -base64 32 > /home/dbpassword.txt
+wppass= $(cat /home/dbpassword.txt)
 echo $database > /home/database
-echo $wppass >home/dbpassword.txt
 echo " Your DB Password for your Wordpress user is $wppass" >> /home/test
 if [[ "$localdb" = true ]]
  then
