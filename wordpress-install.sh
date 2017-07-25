@@ -21,9 +21,16 @@ cp -a /tmp/wordpress/. /var/www/html
 if [[ $serverbuild == *"ubuntu"* ]]
  then
   chown -R ubuntu:www-data /var/www/html
+  echo "<Directory /var/www/html/>" >> /etc/apache2/apache2.conf
+  echo "	AllowOverride All" >> /etc/apache2/apache2.conf
+  echo "</Directory>" >> /etc/apache2/apache2.conf
+  a2enmod rewrite
+  systemctl restart apache2
 elif [[ $serverbuild == *"centos"* ]]
  then
-  chown -R centos:www-data /var/www/html  
+  chown -R centos:www-data /var/www/html 
+  sed -i -e 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
+  systemctl restart apache2
 else
     echo "Cannot determine Build Type... Exiting" >> /home/test
 	exit 3
@@ -52,4 +59,4 @@ echo "\$table_prefix  = 'wp_';" >> /var/www/html/wp-config.php
 echo "if ( !defined('ABSPATH') )" >> /var/www/html/wp-config.php
 echo "        define('ABSPATH', dirname(__FILE__) . '/');" >> /var/www/html/wp-config.php
 echo "require_once(ABSPATH . 'wp-settings.php');" >> /var/www/html/wp-config.php
-
+echo "define('FS_METHOD', 'direct');" >> /var/www/html/wp-config.php
